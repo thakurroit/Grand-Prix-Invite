@@ -1,0 +1,184 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+.gw{font-family:'Press Start 2P',monospace;background:#1a1a2e;padding:16px 12px 28px;width:100%}
+.hbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.hlbl{color:#FFD700;font-size:7px;letter-spacing:1px}
+.ttl{text-align:center;margin-bottom:16px}
+.ttl-main{font-size:14px;color:#FFD700;text-shadow:2px 2px #e63900;line-height:1.7;letter-spacing:1px}
+.ttl-sub{font-size:6px;color:#ff6b9d;margin-top:6px;letter-spacing:2px}
+.players{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:16px}
+.pcard{background:#16213e;border:2px solid #e63900;padding:8px 10px;text-align:center;flex:1;max-width:130px}
+.plbl{font-size:5px;color:#aaa;margin-bottom:4px}
+.pname{font-size:8px;color:#FFD700}
+.pico{font-size:24px;margin-bottom:3px;display:block;font-family:sans-serif}
+.vs{font-size:9px;color:#ff6b9d}
+.slbl{font-size:6px;color:#4ecdc4;letter-spacing:1px;margin-bottom:10px;text-align:center}
+.map-box{background:#0f3460;border:3px solid #e63900;padding:14px 10px;margin-bottom:14px}
+.venues{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.vstop{display:flex;flex-direction:column;align-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.vstop:active .vico{transform:scale(0.92)}
+.vico{width:100%;aspect-ratio:1;max-width:90px;border:2px solid #533483;display:flex;align-items:center;justify-content:center;font-size:28px;font-family:sans-serif;background:#16213e;position:relative;transition:border-color 0.1s,background 0.1s}
+.vico.sel{border-color:#FFD700;background:#2a1a5e}
+.vico .vcoin{position:absolute;top:-8px;right:-8px;font-size:9px;font-family:sans-serif;background:#FFD700;color:#1a1a2e;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-weight:700;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);opacity:0;transition:opacity 0.15s}
+.vico .vcoin.show{opacity:1}
+.vlbl{font-size:5px;color:#fff;margin-top:5px;text-align:center;line-height:1.6}
+.sec{background:#16213e;border:2px solid #533483;padding:12px 10px;margin-bottom:12px}
+.daygrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dbtn{background:#0f3460;border:2px solid #533483;padding:12px 6px;font-family:'Press Start 2P',monospace;font-size:6px;color:#ccc;cursor:pointer;text-align:center;line-height:1.7;min-height:48px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.dbtn:active{transform:scale(0.95)}
+.dbtn.sel{border-color:#FFD700;color:#FFD700;background:#1e3a6e}
+.timegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tbtn{background:#0f3460;border:2px solid #533483;padding:12px 6px;font-family:'Press Start 2P',monospace;font-size:5px;color:#ccc;cursor:pointer;text-align:center;line-height:1.8;min-height:54px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.tbtn:active{transform:scale(0.95)}
+.tbtn.sel{border-color:#FFD700;color:#FFD700;background:#1e3a6e}
+.gobtn{width:100%;background:#e63900;border:3px solid #FFD700;padding:16px 10px;font-family:'Press Start 2P',monospace;font-size:9px;color:#FFD700;cursor:pointer;text-align:center;letter-spacing:2px;text-shadow:1px 1px #800;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.gobtn:active{transform:scale(0.97)}
+.gobtn:disabled{background:#444;border-color:#666;color:#666;cursor:not-allowed;transform:none}
+.pdiv{text-align:center;color:#533483;font-size:7px;margin:10px 0;letter-spacing:3px}
+.rscreen{display:none;text-align:center;padding:20px 8px}
+.rscreen.show{display:block}
+.rtitle{font-size:11px;color:#FFD700;text-shadow:2px 2px #e63900;margin-bottom:14px;line-height:1.9}
+.rsummary{font-size:6px;color:#4ecdc4;line-height:2.4;margin-bottom:20px}
+.wabtn{display:block;width:100%;background:#25D366;border:3px solid #FFD700;padding:14px 10px;font-family:'Press Start 2P',monospace;font-size:7px;color:#000;cursor:pointer;text-decoration:none;letter-spacing:1px;text-align:center;touch-action:manipulation}
+.wabtn:active{opacity:0.85}
+</style>
+
+<h2 class="sr-only">Super Date Kart — Sim's date invite from Rohit. Pick a venue, day, and time, then send via WhatsApp.</h2>
+
+<div class="gw">
+
+<div id="mainScreen">
+  <div class="hbar">
+    <div class="hlbl">&#9829; &#9829; &#9829; ROHIT</div>
+    <div class="hlbl" id="coinDisp">&#127849; x 00</div>
+  </div>
+
+  <div class="ttl">
+    <div class="ttl-main">SUPER DATE KART</div>
+    <div class="ttl-sub">— a proposal for player 2 —</div>
+  </div>
+
+  <div class="players">
+    <div class="pcard">
+      <span class="pico">&#127950;</span>
+      <div class="plbl">PLAYER 1</div>
+      <div class="pname">ROHIT</div>
+    </div>
+    <div class="vs">VS</div>
+    <div class="pcard">
+      <span class="pico">&#127800;</span>
+      <div class="plbl">PLAYER 2</div>
+      <div class="pname">SIM</div>
+    </div>
+  </div>
+
+  <div class="pdiv">&#9619;&#9618;&#9617; SELECT TRACK &#9617;&#9618;&#9619;</div>
+
+  <div class="map-box">
+    <div class="slbl" style="margin-bottom:12px;">&#11015; PICK YOUR DESTINATION &#11015;</div>
+    <div class="venues">
+      <div class="vstop" onclick="selVenue('coffee',this)">
+        <div class="vico" id="vc-coffee"><span>&#9749;</span><div class="vcoin" id="vk-coffee">&#9733;</div></div>
+        <div class="vlbl">COFFEE<br>CIRCUIT</div>
+      </div>
+      <div class="vstop" onclick="selVenue('drinks',this)">
+        <div class="vico" id="vc-drinks"><span>&#127866;</span><div class="vcoin" id="vk-drinks">&#9733;</div></div>
+        <div class="vlbl">DRINKS<br>DERBY</div>
+      </div>
+      <div class="vstop" onclick="selVenue('dinner',this)">
+        <div class="vico" id="vc-dinner"><span>&#127869;</span><div class="vcoin" id="vk-dinner">&#9733;</div></div>
+        <div class="vlbl">DINNER<br>DUNGEON</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="slbl">&#11015; CHOOSE RACE DAY &#11015;</div>
+    <div class="daygrid">
+      <button class="dbtn" onclick="selDay('SATURDAY',this)">SATURDAY</button>
+      <button class="dbtn" onclick="selDay('SUNDAY',this)">SUNDAY</button>
+      <button class="dbtn" onclick="selDay('FRIDAY EVE',this)">FRIDAY<br><span style="font-size:4px;color:#aaa">BONUS TRACK</span></button>
+      <button class="dbtn" onclick="selDay('SIM PICKS',this)">SIM<br>PICKS!</button>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="slbl">&#11015; SET START TIME &#11015;</div>
+    <div class="timegrid">
+      <button class="tbtn" onclick="selTime('11 AM',this)">11 AM<br>BRUNCH LAP</button>
+      <button class="tbtn" onclick="selTime('3 PM',this)">3 PM<br>GOLDEN HOUR</button>
+      <button class="tbtn" onclick="selTime('6 PM',this)">6 PM<br>SUNSET SPRINT</button>
+      <button class="tbtn" onclick="selTime('7 PM',this)">7 PM<br>NIGHT RACE</button>
+      <button class="tbtn" onclick="selTime('8 PM',this)">8 PM<br>STAR COURSE</button>
+      <button class="tbtn" onclick="selTime('SIM DECIDES',this)">SIM<br>PICKS TIME!</button>
+    </div>
+  </div>
+
+  <button class="gobtn" id="goBtn" onclick="goDate()" disabled>&#9654; PRESS START &#9664;</button>
+</div>
+
+<div class="rscreen" id="resultScreen">
+  <div class="rtitle">&#127881; LEVEL UP! &#127881;<br>DATE UNLOCKED!</div>
+  <div class="rsummary" id="rsum"></div>
+  <a class="wabtn" id="waLink" href="#">&#128241; SEND TO ROHIT &#9654;</a>
+  <div style="font-size:5px;color:#666;margin-top:12px;line-height:2">tap to open whatsapp</div>
+</div>
+
+</div>
+
+<script>
+var sv=null,sd=null,st=null;
+var vn={coffee:'Coffee Circuit',drinks:'Drinks Derby',dinner:'Dinner Dungeon'};
+function upCoins(){
+  var c=(sv?1:0)+(sd?1:0)+(st?1:0);
+  document.getElementById('coinDisp').textContent='&#127849; x 0'+c;
+}
+function chk(){
+  var b=document.getElementById('goBtn');
+  b.disabled=!(sv&&sd&&st);
+  upCoins();
+}
+function selVenue(v,el){
+  sv=v;
+  document.querySelectorAll('.vico').forEach(function(w){w.classList.remove('sel');});
+  document.querySelectorAll('.vcoin').forEach(function(c){c.classList.remove('show');});
+  document.getElementById('vc-'+v).classList.add('sel');
+  document.getElementById('vk-'+v).classList.add('show');
+  chk();
+}
+function selDay(d,el){
+  sd=d;
+  document.querySelectorAll('.dbtn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+  chk();
+}
+function selTime(t,el){
+  st=t;
+  document.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+  chk();
+}
+function goDate(){
+  if(!sv||!sd||!st) return;
+  document.getElementById('mainScreen').style.display='none';
+  var rs=document.getElementById('resultScreen');
+  rs.classList.add('show');
+  var venue=vn[sv];
+  document.getElementById('rsum').innerHTML=
+    '&#128506; TRACK: '+venue+'<br>'+
+    '&#128197; DAY: '+sd+'<br>'+
+    '&#8987; TIME: '+st+'<br><br>'+
+    '&#9733; SIM HAS CHOSEN! &#9733;';
+  var msg=encodeURIComponent(
+    "&#127918; SUPER DATE KART — PLAYER 2 HAS RESPONDED!\n\n"+
+    "Hey Rohit! It's Sim — I picked my date!\n\n"+
+    "Venue: "+venue+"\n"+
+    "Day: "+sd+"\n"+
+    "Time: "+st+"\n\n"+
+    "Let's race! &#127950;&#128168;"
+  );
+  document.getElementById('waLink').href='https://wa.me/15138864682?text='+msg;
+}
+</script>
