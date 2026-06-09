@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-.gw{font-family:'Press Start 2P',monospace;background:#1a1a2e;padding:16px 12px 28px;width:100%}
+.gw{font-family:'Press Start 2P',monospace;background:#1a1a2e;padding:16px 12px 28px;width:100%;min-height:100dvh;display:flex;flex-direction:column;}
 .hbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .hlbl{color:#FFD700;font-size:7px;letter-spacing:1px}
 .ttl{text-align:center;margin-bottom:16px}
@@ -133,9 +133,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 .tbtn{background:#0f3460;border:2px solid #533483;padding:12px 6px;font-family:'Press Start 2P',monospace;font-size:5px;color:#ccc;cursor:pointer;text-align:center;line-height:1.8;min-height:54px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .tbtn:active{transform:scale(0.95)}
 .tbtn.sel{border-color:#FFD700;color:#FFD700;background:#1e3a6e}
-.gobtn{width:100%;background:#e63900;border:3px solid #FFD700;padding:16px 10px;font-family:'Press Start 2P',monospace;font-size:9px;color:#FFD700;cursor:pointer;text-align:center;letter-spacing:2px;text-shadow:1px 1px #800;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.gobtn{width:100%;background:#e63900;border:3px solid #FFD700;padding:16px 8px;font-family:'Press Start 2P',monospace;font-size:8px;color:#FFD700;cursor:pointer;text-align:center;letter-spacing:1px;text-shadow:1px 1px #800;touch-action:manipulation;-webkit-tap-highlight-color:transparent;white-space:nowrap;}
 .gobtn:active{transform:scale(0.97)}
 .gobtn:disabled{background:#444;border-color:#666;color:#666;cursor:not-allowed;transform:none}
+.start-wrap{position:sticky;bottom:0;z-index:100;background:#1a1a2e;padding:10px 0 calc(env(safe-area-inset-bottom,0px) + 10px);margin-top:16px;}
 .pdiv{text-align:center;color:#533483;font-size:7px;margin:10px 0;letter-spacing:3px}
 .rscreen{display:none;text-align:center;padding:20px 8px}
 .rscreen.show{display:block}
@@ -215,7 +216,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     </div>
   </div>
 
-  <button class="gobtn" id="goBtn" onclick="goDate()" disabled>&#9654; PRESS START &#9664;</button>
+  <div class="start-wrap">
+  <button class="gobtn" id="goBtn" onclick="goDate()" disabled>
+    &#9654; PRESS START &#9664;
+  </button>
+</div>
 </div>
 
 <div class="rscreen" id="resultScreen">
